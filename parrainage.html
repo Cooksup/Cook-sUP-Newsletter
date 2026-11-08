@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cook'sUP · Un dessert offert pour découvrir la cuisine du soin</title>
+<meta name="description" content="Un proche vous offre un dessert maison pour votre première séance Cook'sUP : vos repas de la semaine cuisinés chez vous.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--vert:#1F3327;--terra:#B85C38;--creme:#F7F2E7;--sauge:#8A9A7E;--texte:#3B4A3F;--line:#D8D4C8;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',Arial,sans-serif;background:var(--creme);color:var(--texte);min-height:100vh;display:flex;flex-direction:column}
+  header{background:var(--vert);text-align:center;padding:28px 20px 22px}
+  .logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;letter-spacing:6px;color:var(--creme);font-weight:600}
+  .tag{font-size:10px;letter-spacing:3px;color:var(--sauge);text-transform:uppercase;margin-top:4px}
+  main{flex:1;width:100%;max-width:580px;margin:0 auto;padding:42px 22px 54px}
+  .center{text-align:center}
+  .kicker{font-size:11px;letter-spacing:3px;color:var(--terra);text-transform:uppercase;font-weight:700}
+  h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:40px;line-height:1.1;color:var(--vert);margin-top:10px}
+  h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:26px;color:var(--vert)}
+  p.lead{font-size:15px;line-height:1.7;margin:14px auto 0;max-width:460px}
+  .card{background:#fff;border:1px solid #E4DECF;padding:28px 24px;margin-top:30px}
+  .gift{background:var(--terra);color:var(--creme);text-align:center;padding:30px 24px;margin-top:30px}
+  .gift .kicker{color:var(--creme);opacity:.85}
+  .gift .big{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;line-height:1.15;color:#fff;margin-top:8px}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+  .duo div{background:#E9EDE4;padding:18px 16px}
+  .duo small{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:#5C6B60}
+  .duo strong{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:19px;line-height:1.25;color:var(--vert);margin-top:6px}
+  .link{display:flex;margin-top:16px;border:1.5px solid var(--line);background:var(--creme)}
+  .link input{flex:1;min-width:0;border:none;background:transparent;padding:13px 14px;font-family:'DM Sans',Arial,sans-serif;font-size:13px;color:var(--vert);outline:none}
+  .link button{border:none;background:var(--vert);color:var(--creme);padding:0 18px;font-family:'DM Sans',Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer}
+  .shares{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .btn{display:inline-block;padding:14px 24px;background:var(--vert);color:var(--creme);border:none;font-family:'DM Sans',Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;transition:background .2s}
+  .btn:hover{background:#2C4636}
+  .btn.outline{background:transparent;color:var(--vert);border:1.5px solid var(--vert)}
+  .btn.outline:hover{background:var(--vert);color:var(--creme)}
+  .btn.terra{background:var(--terra)}
+  .shares .btn{flex:1;min-width:120px;padding:12px 14px;font-size:11px}
+  .steps{margin-top:30px}
+  .step{display:flex;gap:18px;padding:18px 0;border-top:1px solid var(--line)}
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .num{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;line-height:1;color:var(--sauge);min-width:44px}
+  .step b{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:20px;color:var(--vert);display:block}
+  .step span{font-size:14px;line-height:1.6}
+  form label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5C6B60;font-weight:700;margin:14px 0 6px}
+  form input,form select{width:100%;padding:13px 14px;border:1.5px solid var(--line);background:var(--creme);font-family:'DM Sans',Arial,sans-serif;font-size:15px;color:var(--vert);outline:none}
+  form input:focus,form select:focus{border-color:var(--vert)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .actions .btn{flex:1;min-width:150px}
+  .note{font-size:12px;color:#8A9A7E;line-height:1.6;margin-top:14px}
+  .err{color:var(--terra);font-size:13px;margin-top:10px;min-height:16px}
+  .hidden{display:none}
+  footer{background:var(--vert);text-align:center;padding:20px;font-size:12px;color:var(--sauge)}
+  footer a{color:#E6E0D2;text-decoration:none}
+  @media (max-width:480px){.duo,.row{grid-template-columns:1fr}h1{font-size:34px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">COOK'SUP</div>
+  <div class="tag">cuisine du soin</div>
+</header>
+
+<main>
+
+  <!-- ===== VUE PARRAIN ===== -->
+  <section id="parrain" class="hidden">
+    <div class="center">
+      <div class="kicker">Parrainage</div>
+      <h1 id="pTitle">Partagez la cuisine du soin</h1>
+      <p class="lead">Vous connaissez quelqu'un qui manque de temps pour bien manger&nbsp;? Envoyez-lui votre lien personnel.</p>
+    </div>
+    <div class="duo">
+      <div><small>Pour votre proche</small><strong>Un dessert maison offert à sa première séance</strong></div>
+      <div><small>Pour vous</small><strong>Un plat offert pour chaque proche qui réserve</strong></div>
+    </div>
+    <div class="card">
+      <h2>Votre lien personnel</h2>
+      <div class="link"><input id="refLink" readonly><button id="copy">Copier</button></div>
+      <div class="shares">
+        <a class="btn" id="shWa" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn outline" id="shSms">SMS</a>
+        <a class="btn outline" id="shMail">E-mail</a>
+      </div>
+      <p class="note">Votre proche verra votre prénom et son cadeau. Dès sa première séance, nous ajoutons votre plat offert à votre prochaine séance.</p>
+    </div>
+  </section>
+
+  <!-- ===== VUE FILLEUL ===== -->
+  <section id="filleul" class="hidden">
+    <div class="center">
+      <div class="kicker" id="fKicker">Une invitation pour vous</div>
+      <h1 id="fTitle">Un dessert maison vous est offert</h1>
+      <p class="lead">Cook'sUP, ce sont vos repas de la semaine cuisinés chez vous, avec des produits frais et de saison. Il ne vous reste qu'à réchauffer et à savourer.</p>
+    </div>
+
+    <div class="gift">
+      <div class="kicker">Votre cadeau de bienvenue</div>
+      <div class="big">Un dessert maison offert<br>à votre première séance</div>
+    </div>
+
+    <div class="steps">
+      <div class="step"><div class="num">01</div><div><b>Un menu à votre goût</b><span>Nous composons vos plats selon vos goûts, votre foyer et la saison.</span></div></div>
+      <div class="step"><div class="num">02</div><div><b>On cuisine chez vous</b><span>Le jour J, nous préparons tous vos repas de la semaine dans votre cuisine, en 3 heures environ.</span></div></div>
+      <div class="step"><div class="num">03</div><div><b>Vous savourez</b><span>Des consignes de conservation et de réchauffage claires pour chaque plat. Éligible à 50&nbsp;% de crédit d'impôt.</span></div></div>
+    </div>
+
+    <div class="card">
+      <h2>Je veux en profiter</h2>
+      <form id="fForm" onsubmit="return false">
+        <div class="row">
+          <div><label for="fPrenom">Prénom</label><input id="fPrenom" required></div>
+          <div><label for="fTel">Téléphone</label><input id="fTel" type="tel"></div>
+        </div>
+        <label for="fFoyer">Votre foyer</label>
+        <select id="fFoyer">
+          <option>1 personne</option><option selected>2 personnes</option><option>3 personnes</option><option>4 personnes ou plus</option>
+        </select>
+        <div class="err" id="fErr"></div>
+        <div class="actions" id="fActions"></div>
+      </form>
+      <p class="note">Code de parrainage&nbsp;: <b id="fCode"></b>. Il sera indiqué automatiquement dans votre message.</p>
+    </div>
+  </section>
+
+  <!-- ===== SANS CODE ===== -->
+  <section id="nocode" class="hidden center">
+    <div class="kicker">Parrainage</div>
+    <h1>Ce lien est incomplet</h1>
+    <p class="lead">Utilisez le lien reçu dans votre newsletter Cook'sUP, ou découvrez-nous directement.</p>
+    <p style="margin-top:24px"><a class="btn" href="https://cooksup.fr">Découvrir Cook'sUP</a></p>
+  </section>
+
+</main>
+
+<footer><a href="https://cooksup.fr">cooksup.fr</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/cooks__up/">@cooks__up</a></footer>
+
+<script>
+/* ===== À PERSONNALISER ===== */
+const CONFIG = {
+  email: "",        // ex. "contact@cooksup.fr"  (laisser vide pour masquer le bouton)
+  whatsapp: "",     // ex. "33612345678" sans + ni espaces (laisser vide pour masquer)
+  site: "https://cooksup.fr",
+};
+/* =========================== */
+
+const $ = id => document.getElementById(id);
+const ok = v => v && !/[{}]/.test(v);
+const params = new URLSearchParams(location.search);
+const prenom = ok(params.get("n")) ? params.get("n").trim() : "";
+const pCode = ok(params.get("p")) ? params.get("p").toUpperCase().trim() : "";
+const ref = ok(params.get("ref")) ? params.get("ref").toUpperCase().trim() : "";
+const base = location.origin + location.pathname;
+
+if (pCode) {
+  $("parrain").classList.remove("hidden");
+  if (prenom) $("pTitle").textContent = "Merci " + prenom + ", partagez la cuisine du soin";
+  const sp = new URLSearchParams({ ref: pCode }); if (prenom) sp.set("n", prenom);
+  const link = base + "?" + sp.toString();
+  $("refLink").value = link;
+  const msg = "Je te fais découvrir Cook'sUP : une cheffe vient cuisiner tous tes repas de la semaine chez toi, et ton premier dessert est offert. " + link;
+  $("shWa").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+  $("shSms").href = "sms:?&body=" + encodeURIComponent(msg);
+  $("shMail").href = "mailto:?subject=" + encodeURIComponent("Je te fais découvrir Cook'sUP") + "&body=" + encodeURIComponent(msg);
+  $("copy").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(link); } catch (e) { $("refLink").select(); document.execCommand("copy"); }
+    $("copy").textContent = "Copié";
+    setTimeout(() => $("copy").textContent = "Copier", 1800);
+  });
+} else if (ref) {
+  $("filleul").classList.remove("hidden");
+  if (prenom) { $("fKicker").textContent = "De la part de " + prenom; $("fTitle").textContent = prenom + " vous offre un dessert maison"; }
+  $("fCode").textContent = ref;
+  const build = () => {
+    const p = $("fPrenom").value.trim();
+    if (!p) { $("fErr").textContent = "Indiquez votre prénom."; return null; }
+    $("fErr").textContent = "";
+    return "Bonjour Cook'sUP ! Je m'appelle " + p + (prenom ? ", " + prenom + " m'a parrainé(e)" : "") +
+      " (code " + ref + "). Foyer : " + $("fFoyer").value + "." + ($("fTel").value.trim() ? " Mon numéro : " + $("fTel").value.trim() + "." : "") +
+      " J'aimerais découvrir vos services et profiter de mon dessert offert.";
+  };
+  let html = "";
+  if (CONFIG.whatsapp) html += '<button class="btn terra" id="goWa">Écrire sur WhatsApp</button>';
+  if (CONFIG.email) html += '<button class="btn outline" id="goMail">Envoyer par e-mail</button>';
+  html += '<a class="btn' + (CONFIG.whatsapp || CONFIG.email ? ' outline' : '') + '" href="' + CONFIG.site + '" target="_blank" rel="noopener">Réserver un appel</a>';
+  $("fActions").innerHTML = html;
+  if (CONFIG.whatsapp) $("goWa").onclick = () => { const m = build(); if (m) window.open("https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(m), "_blank"); };
+  if (CONFIG.email) $("goMail").onclick = () => { const m = build(); if (m) location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Parrainage " + ref) + "&body=" + encodeURIComponent(m); };
+} else {
+  $("nocode").classList.remove("hidden");
+}
+</script>
+</body>
+</html>

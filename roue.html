@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La roue Cook'sUP · Votre cadeau fidélité</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--vert:#1F3327;--terra:#B85C38;--creme:#F7F2E7;--sauge:#8A9A7E;--texte:#3B4A3F;--line:#D8D4C8;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',Arial,sans-serif;background:#FFFFFF;color:var(--texte);min-height:100vh;display:flex;flex-direction:column}
+  header{background:var(--vert);text-align:center;padding:28px 20px 22px}
+  .logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;letter-spacing:6px;color:var(--creme);font-weight:600}
+  .tag{font-size:10px;letter-spacing:3px;color:var(--sauge);text-transform:uppercase;margin-top:4px}
+  main{flex:1;width:100%;max-width:560px;margin:0 auto;padding:40px 22px 50px;text-align:center}
+  .kicker{font-size:11px;letter-spacing:3px;color:var(--terra);text-transform:uppercase;font-weight:700}
+  h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:40px;line-height:1.1;color:var(--vert);margin-top:10px}
+  .intro{font-size:15px;line-height:1.65;margin:14px auto 0;max-width:420px}
+  .wheel-wrap{position:relative;width:min(340px,86vw);aspect-ratio:1;margin:34px auto 0}
+  .pointer{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:26px solid var(--vert);z-index:3;filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
+  #wheel{width:100%;height:100%;transition:transform 5.2s cubic-bezier(.12,.72,.08,1);border-radius:50%;box-shadow:0 14px 40px rgba(31,51,39,.18)}
+  .hub{position:absolute;top:50%;left:50%;width:22%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:var(--creme);border:3px solid var(--vert);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:2px;color:var(--vert);font-weight:600;z-index:2}
+  .form{margin-top:34px}
+  label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5C6B60;font-weight:700;margin-bottom:8px}
+  input{width:100%;max-width:280px;padding:14px 16px;border:1.5px solid var(--line);background:#fff;font-family:'DM Sans',Arial,sans-serif;font-size:18px;letter-spacing:3px;text-align:center;text-transform:uppercase;color:var(--vert);outline:none}
+  input:focus{border-color:var(--vert)}
+  .btn{display:inline-block;margin-top:16px;padding:16px 38px;background:var(--vert);color:var(--creme);border:none;font-family:'DM Sans',Arial,sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s}
+  .btn:hover{background:#2C4636}
+  .btn:disabled{opacity:.5;cursor:default}
+  .btn.outline{background:transparent;color:var(--vert);border:1.5px solid var(--vert)}
+  .btn.outline:hover{background:var(--vert);color:var(--creme)}
+  .err{color:var(--terra);font-size:13px;margin-top:12px;min-height:18px}
+  .result{display:none;margin-top:34px;background:#fff;border:1px solid #E4DECF;padding:34px 26px;animation:up .6s ease}
+  .result.show{display:block}
+  @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .result .kicker{color:var(--sauge)}
+  .prize{font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;line-height:1.15;color:var(--terra);margin-top:10px;font-weight:500}
+  .prize-desc{font-size:14px;line-height:1.65;margin-top:12px}
+  .codebox{display:inline-block;margin-top:18px;border:1px dashed var(--sauge);padding:8px 18px;font-size:12px;letter-spacing:2px;color:var(--vert)}
+  .codebox b{font-size:16px;letter-spacing:3px}
+  .shot{display:inline-block;background:#1F3327;color:#F7F2E7;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:30px;margin-bottom:12px}
+  .how{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;line-height:1.65;color:#5C6B60}
+  .ctas{margin-top:8px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .ctas .btn{margin-top:10px;padding:13px 22px;font-size:11px}
+  .share{margin-top:28px;background:#E9EDE4;padding:26px 22px}
+  .share h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:24px;color:var(--vert)}
+  .share p{font-size:13px;line-height:1.6;margin-top:8px}
+  .cond{font-size:11px;color:#8A9A7E;margin-top:26px;line-height:1.6}
+  footer{background:var(--vert);text-align:center;padding:20px;font-size:12px;color:var(--sauge)}
+  footer a{color:#E6E0D2;text-decoration:none}
+  .confetti{position:fixed;top:-12px;width:9px;height:14px;z-index:10;pointer-events:none;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.2}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">COOK'SUP</div>
+  <div class="tag">cuisine du soin</div>
+</header>
+
+<main>
+  <div class="kicker">Votre cadeau fidélité</div>
+  <h1 id="title">La roue Cook'sUP</h1>
+  <p class="intro">Merci de continuer l'aventure avec nous. Tournez la roue une fois et découvrez votre cadeau&nbsp;: tout le monde gagne.</p>
+
+  <div class="wheel-wrap">
+    <div class="pointer"></div>
+    <svg id="wheel" viewBox="0 0 400 400" aria-label="Roue des cadeaux"></svg>
+    <div class="hub">C'S</div>
+  </div>
+
+  <div class="form" id="formBlock">
+    <label for="code">Votre code personnel</label>
+    <input id="code" type="text" autocomplete="off" placeholder="CUP-XXXX" maxlength="12">
+    <div><button class="btn" id="spin">Je tourne la roue</button></div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="kicker">Félicitations, vous avez gagné</div>
+    <div class="prize" id="prize"></div>
+    <div class="prize-desc" id="prizeDesc"></div>
+    <div class="codebox">CODE <b id="codeShown"></b></div>
+    <div class="how">
+      <div class="shot">&#128248;&nbsp; Faites une capture d'écran de cette page</div>
+      Puis envoyez-la-nous par message (WhatsApp ou SMS) avec votre prénom&nbsp;: nous ajouterons votre cadeau à votre prochaine séance.
+      <div class="ctas" id="ctas"></div>
+    </div>
+    <div class="share">
+      <h2>Et si vous faisiez un cadeau à votre tour&nbsp;?</h2>
+      <p>Offrez un dessert maison à un proche pour sa première séance, et recevez un plat offert quand il réserve.</p>
+      <a class="btn outline" id="shareLink" href="parrainage.html">Je partage Cook'sUP</a>
+    </div>
+  </div>
+
+  <p class="cond">Une seule participation par code&nbsp;: le cadeau associé à votre code ne change pas. Pensez à nous envoyer la capture d'écran de votre gain par message. Gain valable sur une séance réalisée avant le 31 janvier 2027, non échangeable contre de l'argent.</p>
+</main>
+
+<footer><a href="https://cooksup.fr">cooksup.fr</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/cooks__up/">@cooks__up</a></footer>
+
+<script>
+/* ===== À PERSONNALISER ===== */
+const CONFIG = {
+  email: "",        // ex. "contact@cooksup.fr"  (laisser vide pour masquer le bouton)
+  whatsapp: "",     // ex. "33612345678" sans + ni espaces (laisser vide pour masquer)
+};
+/* =========================== */
+
+const SALT = "5fcd84cf705fa0b1";
+const PRIZE_MAP = {"1be048163fe07dfc57b43ce0ad5392249ac96291de961c28a1e5946155bf69b6": 3, "b548862e3e04482a3274c2ebf12cddd37d8f90bc43c34213fcf55236702c1c28": 0, "b1c7b8da04bc2744ccb39ebb3414c4ae9227a29d45a51b2e50ae71766da63371": 2, "f218ba289937711a38770ebb7e2e368038548236d2acccb202f039da23b5eab1": 0, "74f37cb03d801a217d22d1c0f5e54d1954c8a11b287c36c6b92f7b15115ba6fb": 3, "9c029a26b08833fb84fac1f11fda705805b33748a8408ef98f86b7fb56776842": 1, "465d6ab5f5f1bf002367fadcf7724a2a53d8aff5a43d4bf1bd85edb46f267eb9": 0, "00a64d441ddbf582c973d02ed9944d5f9537b1ebe76cd9e2e3074c14a3db4ac6": 2, "5a4913833a4358f9c2d060c02f0a9eaf239b2d8ff651c8c7d848e36678d2db02": 0, "3d08140822d696b1633aa2ac8e60b98c74d1d46277dd11a65f78d2cf873cbf49": 2, "85e9040e484497f047c1f21870865a7712e7bd12080f796f60f962fa2cfe2625": 1, "b6ce183d2cff153e915366562ee806a857b2a4178eaadc1458f80b55d01a1749": 0, "4eafb020b5822d8c259843d563fd0cda7536c666456d32384a5ad27c71c0eb15": 0, "f4c42361f3fcb71d45efa5184fecc22c77f17df6df5f5a1689b4bc2c89760790": 1, "ace80975b8d596b1d4d9f98e7571cca8cb182717041fddeaf0c6ced22a41e19b": 1, "10d10deb28ae50d46ce9622937c7ea3b1d4d0b791811c6360253fad2a12e7aab": 1, "e3d13562562f7bc2b944f5ecb345f826a1cbfbdeed63cf10efb0579245a3d369": 1, "8a758a6b0232cac4c1d94a4be6240706e49b2e979d66485a5b7f44160e82e26c": 1, "f640e10fa232fa5b76e66ab0740a6e8ae368aba7c6fb7289445488296edfaff5": 2, "b98455987af3f4a89fcf8ee74470351cab2b49b3208f17fadd3e1ee2b632778e": 1, "0cddcc447f0d290a47d3c0aa037874823e421bab19b5fa78681f579f3d144f11": 0, "86505c10f46e4b5f6f4821ce7efa997feb53c2fbb715a034d1a157b7fb54d79a": 0, "069c3559b08c185dd98928bcb73cd25a24be7547fd559141c98a64e839d9cedf": 1, "63ebd577dc7114fefaa12609b4b92158900f07a1716f999f5f798d3b1a612099": 0, "6886d6c8683e51241040a7822cea1067843e567a26507f90ee7e4a2c74455b31": 2, "da4e4f51a23908e8917f6784762bbcb55daa505aed18e6b62a18a6fdc9355f12": 3, "7501b308ec7075b166598018d0b6102fae030cf50b138be57c35bc77716c4179": 0, "63c0424674dcdc00e03512328e644908e751b7b87fdb467199c897ede799e881": 0, "cf0243b798bfb200690cf06b8a7a8aa5608ebd2c3de1828f37c53d770cc5051c": 0, "b37675b86e44f357d7113355cfd8c6f4478b770cfed382ee5ca8b3ef9fa8a293": 4, "423b8219276acf32458f1ba954b60e2d40683142a462394b79dca47949143a61": 0, "ec56b6afd0c06d0e956dee6ea25daeb1a0b14553aad294a89c504f4d77b52c8e": 1, "2f61bffe1c0ed7b968e34aa1c63f99a23990aeff94581b8c7c228fe34aeec557": 0, "399a1a5c361e8d1d3c9ef886eb6f36c1dbb4e8d22de8f4deec7d68e276093f6c": 0, "2c2ca816b153190be4c8188dae67245c5665a63c5bb4dafdf9c0b1f257d6098b": 1, "358e5a5e18ba54b0688cf0982f7e2b3166171b6a4a986bd45fefb22eb9172777": 2, "aee602ad0ef989ef0957a7fff89c9e5cffa173ab9ab845b9711b116140d7818a": 2, "38785544e51535f1f6a77921ffd9e612628abc8647af74d1819dd9f1edd6a56f": 0, "97e3dc87f2c198ec3e3f4a90e087b09ea6a5dc047f948d3721daa7b2faa4592a": 0, "bb67d146111e50ddb4f645a364bdcb8a180411206bbfc42a825ffc48e2b1d489": 1, "8700b4294577d11d3571b191204b31229d99a94804d839efa7ff46d7e8686e44": 3, "4795b2016e0cb4d8f8b8b1d793f1041ef61daba93e3e3185e346bc37c4f296e0": 3, "f2a302581d3a787b7e12573182700dcd55b0bf0ce027319f782017bdedded550": 4, "5a732a0803f7cc4a1b94e88095efc9aeaaa7c92b7de8012df89c5394e504ad05": 0, "66069ae5b9dc7a6f1bb49eb221e01c3e3fac3e01ac81475f3dae981835d685bb": 2, "b92ef2b7a22f57775fb6fc85df7cc6df2bf558ebb19f4cfca9260289d93e4926": 1, "f8b88f2c76adb08032d45ac097d3e1dc779c9ac0cbbf14d92ce6c7750d94f468": 1, "b98596dd1b5b589da93d68af46dfcb7d722452f8a2f6787f94d1bc5d68dd8737": 2, "98d8b99145c1df18a2071686f627a1e2de5bc50697b230c5c6004b8379be6b60": 1, "7501f10474a1419a161d6842ad7af972875cf767f00019f6d042a742bd86dfb4": 2};
+
+const PRIZES = [
+  { label:"Goûter maison",       short:["Douceur","maison"],    desc:"Un goûter maison offert (cake, cookies ou biscuits de saison) lors de votre prochaine séance." },
+  { label:"Dessert offert",      short:["Dessert","offert"],   desc:"Un dessert maison offert lors de votre prochaine séance." },
+  { label:"Un plat de votre choix", short:["Un plat","au choix"], desc:"Un plat supplémentaire de votre choix, préparé lors de votre prochaine séance." },
+  { label:"-10 % sur une séance", short:["-10 %","séance"],     desc:"10 % de réduction sur votre prochaine séance." },
+  { label:"Option courses offerte", short:["Courses","offertes"], desc:"Nous faisons vos courses pour votre prochaine séance, sans frais de service (hors prix des ingrédients)." },
+];
+const COLORS = ["#1F3327","#B85C38","#8A9A7E","#F7F2E7","#2C4636"];
+const TEXT   = ["#F7F2E7","#F7F2E7","#1F3327","#1F3327","#F7F2E7"];
+
+const N = PRIZES.length, SEG = 360 / N;
+const wheel = document.getElementById("wheel");
+const $ = id => document.getElementById(id);
+
+function polar(cx, cy, r, deg){ const a=(deg-90)*Math.PI/180; return [cx+r*Math.cos(a), cy+r*Math.sin(a)]; }
+
+(function drawWheel(){
+  let svg = '<circle cx="200" cy="200" r="198" fill="#1F3327"/>';
+  for(let i=0;i<N;i++){
+    const a0=i*SEG, a1=(i+1)*SEG;
+    const [x0,y0]=polar(200,200,190,a0), [x1,y1]=polar(200,200,190,a1);
+    svg += `<path d="M200,200 L${x0},${y0} A190,190 0 0,1 ${x1},${y1} Z" fill="${COLORS[i]}" stroke="#F7F2E7" stroke-width="2"/>`;
+    const mid=a0+SEG/2, [tx,ty]=polar(200,200,122,mid);
+    svg += `<g transform="translate(${tx},${ty}) rotate(${mid})" fill="${TEXT[i]}" text-anchor="middle">
+      <text y="-4" font-family="Cormorant Garamond, Georgia, serif" font-size="25" font-weight="600">${PRIZES[i].short[0]}</text>
+      <text y="18" font-family="DM Sans, Arial, sans-serif" font-size="12" letter-spacing="2">${PRIZES[i].short[1].toUpperCase()}</text></g>`;
+  }
+  for(let i=0;i<N*3;i++){ const [x,y]=polar(200,200,194,i*SEG/3); svg+=`<circle cx="${x}" cy="${y}" r="2.6" fill="#F7F2E7"/>`; }
+  wheel.innerHTML = svg;
+})();
+
+async function sha256(str){
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+function clean(c){ return (c||"").toUpperCase().replace(/\s+/g,"").trim(); }
+function store(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function load(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+
+const params = new URLSearchParams(location.search);
+const prenom = (params.get("n")||"").trim();
+if(prenom && !/[{}]/.test(prenom)) $("title").textContent = prenom + ", votre cadeau vous attend";
+const urlCode = clean(params.get("c"));
+if(urlCode && !/[{}]/.test(urlCode)) $("code").value = urlCode;
+
+let spinning = false;
+
+function showResult(idx, code, animate){
+  const p = PRIZES[idx];
+  $("prize").textContent = p.label;
+  $("prizeDesc").textContent = p.desc;
+  $("codeShown").textContent = code;
+  const msg = encodeURIComponent(`Bonjour Cook'sUP ! J'ai gagné « ${p.label} » à la roue fidélité (code ${code}).`);
+  let ctas = "";
+  if(CONFIG.whatsapp) ctas += `<a class="btn" href="https://wa.me/${CONFIG.whatsapp}?text=${msg}" target="_blank" rel="noopener">WhatsApp</a>`;
+  if(CONFIG.email) ctas += `<a class="btn outline" href="mailto:${CONFIG.email}?subject=${encodeURIComponent("Mon cadeau fidélité "+code)}&body=${msg}">Par e-mail</a>`;
+  $("ctas").innerHTML = ctas;
+  const sp = new URLSearchParams({p:code}); if(prenom && !/[{}]/.test(prenom)) sp.set("n",prenom);
+  $("shareLink").href = "parrainage.html?" + sp.toString();
+  $("formBlock").style.display = "none";
+  $("result").classList.add("show");
+  if(animate) confetti();
+  setTimeout(()=>$("result").scrollIntoView({behavior:"smooth",block:"start"}), 150);
+}
+
+function confetti(){
+  const cols=["#B85C38","#8A9A7E","#1F3327","#E3B23C","#F7F2E7"];
+  for(let i=0;i<70;i++){
+    const d=document.createElement("div"); d.className="confetti";
+    d.style.left=Math.random()*100+"vw"; d.style.background=cols[i%cols.length];
+    d.style.animationDuration=(2.2+Math.random()*2)+"s"; d.style.animationDelay=(Math.random()*.6)+"s";
+    document.body.appendChild(d); setTimeout(()=>d.remove(),5000);
+  }
+}
+
+$("spin").addEventListener("click", async ()=>{
+  if(spinning) return;
+  const code = clean($("code").value);
+  $("err").textContent = "";
+  if(!code){ $("err").textContent = "Indiquez le code reçu dans votre newsletter."; return; }
+  const h = await sha256(SALT + code);
+  if(!(h in PRIZE_MAP)){ $("err").textContent = "Ce code n'est pas reconnu. Vérifiez-le dans votre mail (ex. CUP-7KQ4)."; return; }
+  const idx = PRIZE_MAP[h];
+  if(load("cooksup_spin_"+code)){ rotateTo(idx, false); showResult(idx, code, false); return; }
+  spinning = true; $("spin").disabled = true;
+  rotateTo(idx, true);
+  setTimeout(()=>{ store("cooksup_spin_"+code, "1"); spinning=false; showResult(idx, code, true); }, 5400);
+});
+$("code").addEventListener("keydown", e=>{ if(e.key==="Enter") $("spin").click(); });
+
+function rotateTo(idx, animate){
+  const center = idx*SEG + SEG/2;
+  const jitter = (Math.random()-.5) * SEG * 0.6;
+  const deg = 360*6 + (360 - center) + jitter;
+  if(!animate) wheel.style.transition = "none";
+  wheel.style.transform = `rotate(${deg}deg)`;
+}
+</script>
+</body>
+</html>
